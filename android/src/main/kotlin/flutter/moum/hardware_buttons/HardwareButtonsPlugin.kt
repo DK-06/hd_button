@@ -12,7 +12,7 @@ class HardwareButtonsPlugin {
         @JvmStatic
         fun registerWith(registrar: PluginRegistry.Registrar) {
             val activity = registrar.activity()
-            val application = activity.application
+            val application = activity!!.application
 
             registrar.addActivityResultListener(HardwareButtonsWatcherManager.getInstance(application, activity))
 

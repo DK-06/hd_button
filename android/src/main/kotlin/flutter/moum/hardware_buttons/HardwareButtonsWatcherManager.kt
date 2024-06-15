@@ -41,13 +41,13 @@ class HardwareButtonsWatcherManager: PluginRegistry.ActivityResultListener {
         private const val REQUEST_CODE_OVERLAY_PERMISSION = 1000
 
         private val INSTANCE: HardwareButtonsWatcherManager by lazy { HardwareButtonsWatcherManager() }
-        fun getInstance(application: Application, activity: Activity): HardwareButtonsWatcherManager {
+        fun getInstance(application: Application, activity: Activity?): HardwareButtonsWatcherManager {
             val instance = INSTANCE
             instance.application = application
             // set currentActivity to activity only when ActivityLifecycleCallbacks wasn't registered yet.
             // otherwise, currentActivity will be updated in ActivityLifecycleCallbacks.
             if (instance.activityLifecycleCallbacks == null) {
-                instance.currentActivity = activity
+                instance.currentActivity = activity!!
             }
             instance.registerActivityLifecycleCallbacksIfNeeded()
             return instance
